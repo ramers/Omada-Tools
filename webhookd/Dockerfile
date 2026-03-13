@@ -2,11 +2,11 @@ FROM python:3
 
 WORKDIR /usr/src/app
 
-# Копируем requirements.txt из той же папки
-COPY requirements.txt ./
+# Копируем файл из той же папки, где лежит Dockerfile
+COPY webhookd/requirements.txt ./
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Копируем все остальные файлы из текущей папки
-COPY . .
+# Копируем всё содержимое папки webhookd
+COPY webhookd/ ./
 
 CMD [ "python", "./webhookd.py", "--fg" ]
