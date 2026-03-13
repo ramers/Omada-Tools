@@ -161,6 +161,11 @@ def send_to_telegram_api(body):
         "text": body,
         "parse_mode": "Markdown"
     }
+
+    if "message_thread_id" in TELEGRAM_CONFIG and TELEGRAM_CONFIG["message_thread_id"]:
+        payload["message_thread_id"] = TELEGRAM_CONFIG["message_thread_id"]
+
+    
     headers = {"Content-Type": "application/json"}
     tg_url = f"{TELEGRAM_CONFIG['api_url']}bot{TELEGRAM_CONFIG['api_key']}/sendMessage"
 
